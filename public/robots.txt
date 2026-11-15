@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# The Sitemap line is added at build time when VITE_SITE_URL is set
+# (see scripts/prerender.mjs and docs/seo-guide.md).

@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-server/
+
+# TypeScript
+*.tsbuildinfo
+
+# Editor & OS artifacts
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+
+# Logs & temp
+*.log
+npm-debug.log*
+
+# Local env files (config uses VITE_ vars documented in docs/deployment.md)
+.env
+.env.local
+.env.*.local

@@ -1,0 +1,151 @@
+@import '@fontsource-variable/fraunces';
+@import '@fontsource-variable/instrument-sans';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --header-h: 4.5rem;
+
+    /* Light theme — the original brand palette (RGB channels). */
+    --c-paper: 255 255 255;
+    --c-mist: 247 248 245;
+    --c-ink: 27 49 78;
+    --c-ink-soft: 66 83 107;
+    --c-ink-muted: 102 117 138;
+    --c-ink-faint: 142 154 172;
+    --c-brand: 58 174 103;
+    --c-brand-dark: 35 122 74;
+    --c-brand-deep: 27 94 57;
+    --c-brand-tint: 237 246 240;
+    --c-brand-linetint: 207 232 217;
+    --c-navy: 18 35 59;
+    --c-navy-raised: 26 46 73;
+    --c-navy-line: 42 64 92;
+    --c-line: 231 234 230;
+    --c-line-strong: 215 220 215;
+  }
+
+  /* Dark theme — deep navy surfaces derived from the brand navy, the
+     logo green lifted slightly for text on dark. Dark bands (footer,
+     CTA) go deeper than the page so they still read as bands. */
+  .dark {
+    color-scheme: dark;
+    --c-paper: 11 19 33;
+    --c-mist: 16 27 45;
+    --c-ink: 236 241 247;
+    --c-ink-soft: 182 194 211;
+    --c-ink-muted: 143 157 177;
+    --c-ink-faint: 106 121 143;
+    --c-brand: 58 174 103;
+    --c-brand-dark: 46 148 87;
+    --c-brand-deep: 94 203 137;
+    --c-brand-tint: 17 38 31;
+    --c-brand-linetint: 30 66 49;
+    --c-navy: 6 12 22;
+    --c-navy-raised: 15 26 43;
+    --c-navy-line: 30 46 68;
+    --c-line: 30 43 61;
+    --c-line-strong: 44 60 82;
+  }
+
+  html {
+    @apply scroll-smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper font-sans text-ink-soft antialiased transition-colors duration-300;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    @apply bg-brand-tint text-ink;
+  }
+
+  .dark ::selection {
+    @apply bg-brand/30 text-ink;
+  }
+
+  /* A single, restrained focus style across the site. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand/60 ring-offset-2 ring-offset-paper;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display text-ink;
+  }
+}
+
+@layer components {
+  /* Content shell — used by every section for a consistent editorial grid. */
+  .shell {
+    @apply mx-auto w-full max-w-shell px-5 sm:px-8 lg:px-10;
+  }
+
+  .display {
+    @apply font-display font-medium tracking-tight;
+  }
+
+  .eyebrow {
+    @apply text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-ink-muted;
+  }
+
+  .link-underline {
+    @apply relative inline-flex items-center gap-1.5 font-medium text-brand-deep transition-colors duration-200 hover:text-brand-dark;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-100 bg-current transition-transform duration-300 ease-out;
+  }
+
+  .link-underline:active::after {
+    @apply scale-x-95;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Reveal-on-scroll baseline: content is visible unless motion is allowed. */
+[data-reveal] {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal] {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

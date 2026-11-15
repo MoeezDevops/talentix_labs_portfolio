@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16.png" />
+    <link rel="icon" href="/icons/favicon.ico" sizes="48x48" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <!-- Apply the saved (or OS-preferred) theme before first paint — no flash. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var dark = saved
+            ? saved === 'dark'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches;
+          if (dark) {
+            document.documentElement.classList.add('dark');
+            var m = document.querySelector('meta[name="theme-color"]');
+            if (m) m.setAttribute('content', '#0B1321');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <meta property="og:site_name" content="Talentix Labs" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- page metadata start
+         Every route replaces this block at build time (static prerender)
+         and on client navigation. Keep the tag order in sync with
+         src/head/Seo.tsx so prerendered output matches the defaults. -->
+    <title>Talentix Labs — Software Development &amp; Intelligent Automation</title>
+    <meta
+      name="description"
+      content="Talentix Labs is a technology company building web applications, cross-platform mobile apps and AI-powered automation for businesses that want to move faster."
+    />
+    <meta property="og:title" content="Talentix Labs — Software Development &amp; Intelligent Automation" />
+    <meta
+      property="og:description"
+      content="Talentix Labs is a technology company building web applications, cross-platform mobile apps and AI-powered automation for businesses that want to move faster."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="/images/og-image.png" />
+    <meta name="twitter:title" content="Talentix Labs — Software Development &amp; Intelligent Automation" />
+    <meta
+      name="twitter:description"
+      content="Talentix Labs is a technology company building web applications, cross-platform mobile apps and AI-powered automation for businesses that want to move faster."
+    />
+    <meta name="twitter:image" content="/images/og-image.png" />
+    <!-- page metadata end -->
+
+    <!-- If JavaScript is disabled, keep reveal-on-scroll content visible. -->
+    <noscript>
+      <style>
+        [data-reveal] {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
